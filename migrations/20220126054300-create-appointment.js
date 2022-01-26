@@ -10,6 +10,7 @@ module.exports = {
       },
       dayId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         references:{
           model:'Days',
@@ -18,10 +19,12 @@ module.exports = {
         }
       },
       slotId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:false
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         references:{
           model:'Users',
@@ -31,6 +34,7 @@ module.exports = {
       },
       consultantId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         references:{
           model:'Users',
@@ -39,7 +43,10 @@ module.exports = {
         }
       },
       status: {
-        type: Sequelize.STRING
+        type:Sequelize.ENUM({
+          values:['Pending','Canceled','In progress','Completed']
+        }),
+        default:'Pending'
       },
       description: {
         type: Sequelize.STRING

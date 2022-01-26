@@ -19,8 +19,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Slot.init({
     // dayId: DataTypes.INTEGER,
-    startTime: DataTypes.TIME,
-    endTime: DataTypes.TIME
+    startTime: {
+      type:DataTypes.TIME,
+      allowNull:false
+    },
+    endTime: {
+      type:DataTypes.TIME,
+      allowNull:false
+    }
   }, {
     sequelize,
     modelName: 'Slot',

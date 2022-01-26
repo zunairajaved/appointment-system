@@ -22,11 +22,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Appointment.init({
-    dayId: DataTypes.INTEGER,
-    slotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    consultantId: DataTypes.INTEGER,
-    status: DataTypes.STRING,
+    dayId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    slotId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    userId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    consultantId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    status: {
+      type:DataTypes.ENUM({
+        values:['Pending','Canceled','In progress','Completed']
+      }),
+      defaultValue:'Pending'
+    },
     description: DataTypes.STRING
   }, {
     sequelize,

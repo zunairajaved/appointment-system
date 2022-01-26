@@ -4,9 +4,9 @@ const nodemailer = require('nodemailer');
 const config = require('../config');
 
 module.exports = {
-    createAppointment: async (req,res) =>{
+    createAppointment:  (req,res) =>{
         console.log(req.body);
-     await Appointment.create({
+      Appointment.create({
         dayId:req.body.dayId,
         slotId:req.body.slotId,
         userId:req.userId,
@@ -36,8 +36,8 @@ module.exports = {
        res.status(500).send({message:err.message})
       });
     },
-    updateStatus : async (req,res) =>{
-      await Appointment.update({
+    updateStatus :  (req,res) =>{
+       Appointment.update({
         status:req.body.status
       },{where : {id:req.param.id , userId:req.userId}}).then(status =>{
         res.setHeader('Content-Type', 'application/json');

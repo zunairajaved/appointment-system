@@ -27,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     };
   }
   Day.init({
-    name: DataTypes.STRING
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false
+    }
   }, {
     sequelize,
     modelName: 'Day',

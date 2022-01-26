@@ -23,12 +23,25 @@ module.exports = (sequelize, DataTypes) => {
     };
   }
   User.init({
-    fullName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role:DataTypes.ENUM({
+    fullName: {
+      type:DataTypes.STRING,
+      allowNull:false
+    },
+    email: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      unique:true
+    },
+    password: {
+      type:DataTypes.STRING(64),
+      allowNull:false
+    },
+    role:{
+      type:DataTypes.ENUM({
       values:['admin','user','consultant']
-    })
+    }),
+    defaultValue:'user'
+  }
   }, {
     sequelize,
     modelName: 'User',

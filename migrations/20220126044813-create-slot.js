@@ -10,6 +10,7 @@ module.exports = {
       },
       dayId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         references:{
           model:'Days',
@@ -18,10 +19,12 @@ module.exports = {
         }
       },
       startTime: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        allowNull:false
       },
       endTime: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        allowNull:false
       },
       createdAt: {
         allowNull: false,

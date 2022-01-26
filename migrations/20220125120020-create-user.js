@@ -9,18 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fullName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false,
+        unique:true,
+        validate:{
+          isEmail : {msg:'Email must be type of email'}
+      }
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(64),
+        validate:{
+          is:/^[0-9a-f]{64}$/i
+        }
       },
       role:{
         type:Sequelize.ENUM({
           values:['admin','user','consultant']
-        })
+        }),
+        default:'user',
       },
       createdAt: {
         allowNull: false,

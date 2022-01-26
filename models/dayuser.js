@@ -15,8 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   DayUser.init({
-    dayId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    dayId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    userId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    }
   }, {
     sequelize,
     modelName: 'DayUser',

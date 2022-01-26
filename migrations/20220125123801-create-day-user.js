@@ -10,6 +10,7 @@ module.exports = {
       },
       dayId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         reference:{
           model:'Days',
@@ -19,6 +20,7 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull:false,
         onDelete:'CASCADE',
         reference:{
           model:'Users',
