@@ -5,7 +5,6 @@ const config = require('../config');
 
 module.exports = {
     createAppointment:  (req,res) =>{
-        console.log(req.body);
       Appointment.create({
         dayId:req.body.dayId,
         slotId:req.body.slotId,
@@ -30,7 +29,6 @@ module.exports = {
         //   };
         //  config.transporter.sendMail(userOptions);
         //  config.transporter.sendMail(consultantOptions)
-         res.setHeader('Content-Type', 'application/json');
         res.status(200).send().json(appointment);
    }).catch(err => {
        res.status(500).send({message:err.message})
@@ -40,7 +38,6 @@ module.exports = {
        Appointment.update({
         status:req.body.status
       },{where : {id:req.param.id , userId:req.userId}}).then(status =>{
-        res.setHeader('Content-Type', 'application/json');
                 res.status(200).send({message:'status updated'});
         })
         .catch(err => {res.status(500).send({message:err.message});

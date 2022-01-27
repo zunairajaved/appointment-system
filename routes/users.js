@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/UserController');
 const auth = require('../middleware/auth');
+const check = require('../middleware/validation');
 
 
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
-router.post('/signup', userController.signup);
+router.post('/signup',check.userValidate() ,userController.signup);
 router.post('/signin', userController.signin);
 router.get('/profile',auth.varifyToken,userController.getProfile);
 router.put('/update/profile',auth.varifyToken,userController.updateProfile);

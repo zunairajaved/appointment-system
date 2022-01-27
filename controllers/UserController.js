@@ -4,14 +4,15 @@ const Appointment = require('../models').Appointment;
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const config = require('../config');
+const { validationResult } = require('express-validator/check');
 
  module.exports = {
     signup : (req, res) => {
-            // const errors = validationResult(req);
-            // console.log(errors);
-            // if(!errors.isEmpty()){
-            //     res.status(422).json({errors:errors.array()});  
-            // }  
+            const errors = validationResult(req);
+            console.log(errors);
+            if(!errors.isEmpty()){
+                res.status(422).json({errors:errors.array()});  
+            } 
             User.create({ 
                 fullName : req.body.fullName,
                 email : req.body.email,
@@ -20,7 +21,7 @@ const config = require('../config');
             }).then(user => {
                     res.status(200).send(user.toJSON());
               }).catch(err => {
-                  res.status(500).send({message:err.errors[0].message})
+                  res.status(500).send({message:err.errors.message})
               });
     },
     signin : (req, res) => {

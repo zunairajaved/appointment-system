@@ -1,7 +1,13 @@
 const Slot = require('../models').Slot;
+const { validationResult } = require('express-validator/check');
 
 module.exports = {
     addSlot :  (req,res) => {
+        const errors = validationResult(req);
+        console.log(errors);
+        if(!errors.isEmpty()){
+            res.status(422).json({errors:errors.array()});  
+        } 
          Slot.create({
             dayId:req.body.dayId,
             startTime:req.body.startTime,
